@@ -25,6 +25,12 @@ function App() {
         },
     ];
 
+    // Receives data from child component:
+    function addExpenseHandler(expense) {
+        console.log("In App.js");
+        console.log(expense);
+    }
+
     // This is the old way:
     // return React.createElement(
     //     'div',
@@ -36,7 +42,7 @@ function App() {
     //Modern syntax not requiring React import:
     return (
         <div>
-            <NewExpense />
+            <NewExpense onAddExpense={addExpenseHandler} />
             <Expenses items={expenses} />
         </div>
     );
