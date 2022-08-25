@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./ExpenseForm.css";
 
 function ExpenseForm(props) {
-
+    // Create initial state for form inputs:
     const [enteredTitle, setEnteredTitle] = useState("");
     const [enteredAmount, setEnteredAmount] = useState("");
     const [enteredDate, setEnteredDate] = useState("");
@@ -14,6 +14,7 @@ function ExpenseForm(props) {
     //     enteredDate: ""
     // });
 
+    // Functions to capture input value change on form:
     function titleChangeHandler(event) {
         // console.log(event.target.value);
         setEnteredTitle(event.target.value);
@@ -45,6 +46,7 @@ function ExpenseForm(props) {
         // });
     }
 
+    // Function to capture all form values when submitted:
     function submitHandler(e) {
         e.preventDefault();
         const expenseData = {
@@ -52,7 +54,10 @@ function ExpenseForm(props) {
             amount: enteredAmount,
             date: new Date(enteredDate)
         };
+        // Pass submitted form data up to NewExpense.js
         props.onSaveExpenseData(expenseData);
+
+        // Set default values after submission:
         setEnteredTitle("");
         setEnteredAmount("");
         setEnteredDate("");
@@ -76,6 +81,7 @@ function ExpenseForm(props) {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={props.onCancel}>Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
 
